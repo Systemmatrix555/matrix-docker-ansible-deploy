@@ -6,7 +6,7 @@ The playbook can install and configure [matrix-registration](https://github.com/
 
 **WARNING**: this is not related to [matrix-registration-bot](configuring-playbook-bot-matrix-registration-bot.md)
 
-> matrix-registration is a simple python application to have a token based matrix registration.
+> matrix-registration is a simple python application to have a token based Matrix registration.
 
 Use matrix-registration to **create unique registration links**, which people can use to register on your Matrix server. It allows you to **keep your server's registration closed (private)**, but still allow certain people (these having a special link) to register a user account.
 
@@ -14,12 +14,12 @@ Use matrix-registration to **create unique registration links**, which people ca
 
 - **an API for creating registration tokens** (unique registration links). This API can be used via `curl` or via the playbook (see [Usage](#usage) below)
 
-- **a user registration page**, where people can use these registration tokens. By default, exposed at `https://matrix.DOMAIN/matrix-registration`
+- **a user registration page**, where people can use these registration tokens. By default, exposed at `https://matrix.example.com/matrix-registration`
 
 
 ## Adjusting the playbook configuration
 
-Add the following configuration to your `inventory/host_vars/matrix.DOMAIN/vars.yml` file:
+Add the following configuration to your `inventory/host_vars/matrix.example.com/vars.yml` file:
 
 ```yaml
 matrix_registration_enabled: true
@@ -39,7 +39,7 @@ ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,start
 
 ## Usage
 
-**matrix-registration** gets exposed at `https://matrix.DOMAIN/matrix-registration`
+**matrix-registration** gets exposed at `https://matrix.example.com/matrix-registration`
 
 It provides various [APIs](https://github.com/ZerataX/matrix-registration/wiki/api) - for creating registration tokens, listing tokens, disabling tokens, etc. To make use of all of its capabilities, consider using `curl`.
 

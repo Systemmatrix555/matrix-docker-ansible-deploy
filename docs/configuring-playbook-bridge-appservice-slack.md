@@ -12,11 +12,11 @@ loosely based on [this](https://github.com/matrix-org/matrix-appservice-slack#Se
 
 1. Create a new Matrix room to act as the administration control room. Note its internal room ID. This can be done in Element by sending a message, opening the options for that message and choosing "view source". The room ID will be displayed near the top.
 
-2. Enable the bridge by adding the following configuration to your `inventory/host_vars/matrix.DOMAIN/vars.yml` file:
+2. Enable the bridge by adding the following configuration to your `inventory/host_vars/matrix.example.com/vars.yml` file:
 
     ```yaml
     matrix_appservice_slack_enabled: true
-    matrix_appservice_slack_control_room_id: "Your matrix admin room ID"
+    matrix_appservice_slack_control_room_id: "Your Matrix admin room ID"
     ```
 
 3. Enable puppeting (optional, but recommended)
@@ -40,7 +40,7 @@ loosely based on [this](https://github.com/matrix-org/matrix-appservice-slack#Se
 6. Invite the bridge bot user into the admin room:
 
     ```
-    /invite @slackbot:MY.DOMAIN
+    /invite @slackbot:example.com
     ```
 
     Note that the bot's domain is your server's domain **without the `matrix.` prefix.**
@@ -53,7 +53,7 @@ loosely based on [this](https://github.com/matrix-org/matrix-appservice-slack#Se
 
     Click on bot users and add a new bot user. We will use this account to bridge the the rooms.
 
-8. Click on Event Subscriptions and enable them and use the request url `https://matrix.DOMAIN/appservice-slack`. Then add the following events and save:
+8. Click on Event Subscriptions and enable them and use the request url `https://matrix.example.com/appservice-slack`. Then add the following events and save:
 
      Bot User Events:
 
@@ -73,7 +73,7 @@ loosely based on [this](https://github.com/matrix-org/matrix-appservice-slack#Se
 
     - files:write:user
 
-    **Note**: In order to make Slack files visible to matrix users, this bridge will make Slack files visible to anyone with the url (including files in private channels). This is different than the current behavior in Slack, which only allows authenticated access to media posted in private channels. See MSC701 for details.
+    **Note**: In order to make Slack files visible to Matrix users, this bridge will make Slack files visible to anyone with the url (including files in private channels). This is different than the current behavior in Slack, which only allows authenticated access to media posted in private channels. See MSC701 for details.
 
 10. Click on Install App and Install App to Workspace. Note the access tokens shown. You will need the Bot User OAuth Access Token and if you want to bridge files, the OAuth Access Token whenever you link a room.
 
@@ -81,7 +81,7 @@ loosely based on [this](https://github.com/matrix-org/matrix-appservice-slack#Se
 
     * Create a Matrix room in the usual manner for your client. Take a note of its Matrix room ID - it will look something like !aBcDeF:example.com.
 
-    * Invite the bot user to both the Slack and Matrix channels you would like to bridge using `/invite @matrixbot` for Slack and `/invite @slackbot:MY.DOMAIN` for Matrix.
+    * Invite the bot user to both the Slack and Matrix channels you would like to bridge using `/invite @matrixbot` for Slack and `/invite @slackbot:example.com` for Matrix.
 
     * Determine the "channel ID" that Slack uses to identify the channel. You can see it when you open a given Slack channel in a browser. The URL reads like this: `https://app.slack.com/client/XXX/<the channel ID>/details/`.
 
@@ -115,7 +115,7 @@ loosely based on [this](https://github.com/matrix-org/matrix-appservice-slack#Se
     unlink --room !the-matrix:room.id
     ```
 
-    Unlinking doesn't only disconnect the bridge, but also makes the slackbot leave the bridged matrix room. So in case you want to re-link later, don't forget to re-invite the slackbot into this room again.
+    Unlinking doesn't only disconnect the bridge, but also makes the slackbot leave the bridged Matrix room. So in case you want to re-link later, don't forget to re-invite the slackbot into this room again.
 
 ## Troubleshooting
 
