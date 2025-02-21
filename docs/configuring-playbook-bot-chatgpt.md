@@ -6,6 +6,8 @@ The playbook can install and configure [matrix-chatgpt-bot](https://github.com/m
 
 Talk to [ChatGPT](https://openai.com/blog/chatgpt/) via your favourite Matrix client!
 
+See the project's [documentation](https://github.com/matrixgpt/matrix-chatgpt-bot/blob/main/README.md) to learn what it does and why it might be useful to you.
+
 ## Prerequisites
 
 ### Obtain an OpenAI API key
@@ -28,7 +30,8 @@ ansible-playbook -i inventory/hosts setup.yml --extra-vars='username=bot.chatgpt
 
 The bot requires an access token to be able to connect to your homeserver. Refer to the documentation on [how to obtain an access token](obtaining-access-tokens.md).
 
-⚠️ **Warning**: Access tokens are sensitive information. Do not include them in any bug reports, messages, or logs. Do not share the access token with anyone.
+> [!WARNING]
+> Access tokens are sensitive information. Do not include them in any bug reports, messages, or logs. Do not share the access token with anyone.
 
 To make sure the bot can read encrypted messages, it will need an encryption key, just like any other new user. While obtaining the access token, follow the prompts to setup a backup key. More information can be found in the [Element documentation](https://element.io/help#encryption6).
 
@@ -50,6 +53,14 @@ matrix_bot_chatgpt_matrix_access_token: 'ACCESS_TOKEN_HERE'
 # More information: https://github.com/mustvlad/ChatGPT-System-Prompts
 matrix_bot_chatgpt_matrix_bot_prompt_prefix: 'Instructions:\nYou are ChatGPT, a large language model trained by OpenAI.'
 ```
+
+### Extending the configuration
+
+There are some additional things you may wish to configure about the bot.
+
+Take a look at:
+
+- `roles/custom/matrix-bot-chatgpt/defaults/main.yml` for some variables that you can customize via your `vars.yml` file
 
 ## Installing
 
@@ -74,4 +85,6 @@ To use the bot, invite it to the room you specified on your `vars.yml` file (`/i
 
 After the bot joins the room, you can send a message to it. When you do so, use the prefix if you configured it or mention the bot.
 
-You can also refer to the upstream [documentation](https://github.com/matrixgpt/matrix-chatgpt-bot).
+## Troubleshooting
+
+As with all other services, you can find the logs in [systemd-journald](https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html) by logging in to the server with SSH and running `journalctl -fu matrix-bot-chatgpt`.

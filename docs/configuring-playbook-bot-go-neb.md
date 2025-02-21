@@ -26,7 +26,8 @@ ansible-playbook -i inventory/hosts setup.yml --extra-vars='username=bot.go-neb 
 
 The bot requires an access token to be able to connect to your homeserver. Refer to the documentation on [how to obtain an access token](obtaining-access-tokens.md).
 
-⚠️ **Warning**: Access tokens are sensitive information. Do not include them in any bug reports, messages, or logs. Do not share the access token with anyone.
+> [!WARNING]
+> Access tokens are sensitive information. Do not include them in any bug reports, messages, or logs. Do not share the access token with anyone.
 
 ## Adjusting DNS records
 
@@ -219,6 +220,15 @@ After changing the domain, **you may need to adjust your DNS** records to point 
 
 If you've decided to reuse the `matrix.` domain, you won't need to do any extra DNS configuration.
 
+### Extending the configuration
+
+There are some additional things you may wish to configure about the bot.
+
+Take a look at:
+
+- `roles/custom/matrix-bot-go-neb/defaults/main.yml` for some variables that you can customize via your `vars.yml` file
+- `roles/custom/matrix-bot-go-neb/templates/config.yaml.j2` for the bot's default configuration. You can override settings (even those that don't have dedicated playbook variables) using the `matrix_bot_go_neb_configuration_extension_yaml` variable
+
 ## Installing
 
 After configuring the playbook and potentially [adjusting your DNS records](#adjusting-dns-records), run the playbook with [playbook tags](playbook-tags.md) as below:
@@ -245,3 +255,7 @@ Basic usage is like this: `!echo hi` or `!imgur puppies` or `!giphy matrix`
 If you enabled the github_cmd service, send `!github help` to the bot in the room to see the available commands.
 
 You can also refer to the upstream [Documentation](https://github.com/matrix-org/go-neb).
+
+## Troubleshooting
+
+As with all other services, you can find the logs in [systemd-journald](https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html) by logging in to the server with SSH and running `journalctl -fu matrix-bot-go-neb`.

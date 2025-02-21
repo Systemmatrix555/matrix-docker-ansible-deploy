@@ -35,12 +35,14 @@ For a more custom setup, see the [Other configuration options](#other-configurat
 
   - [Configuring Conduit](configuring-playbook-conduit.md), if you've switched to the [Conduit](https://conduit.rs) homeserver implementation
 
+  - [Configuring conduwuit](configuring-playbook-conduwuit.md), if you've switched to the [conduwuit](https://conduwuit.puppyirl.gay/) homeserver implementation
+
   - [Configuring Dendrite](configuring-playbook-dendrite.md), if you've switched to the [Dendrite](https://matrix-org.github.io/dendrite) homeserver implementation
 
 - Server components:
   - [Using an external PostgreSQL server](configuring-playbook-external-postgres.md)
 
-  - [Adjusting TURN server configuration](configuring-playbook-turn.md) (advanced)
+  - [Configuring a TURN server](configuring-playbook-turn.md) (advanced)
 
   - [Configuring the Traefik reverse-proxy](configuring-playbook-traefik.md) (advanced)
 
@@ -70,6 +72,9 @@ Web clients for Matrix that you can host on your own domains.
 - [Setting up Cinny](configuring-playbook-client-cinny.md), if you've enabled [Cinny](https://github.com/ajbura/cinny), a web client focusing primarily on simple, elegant and secure interface
 
 - [Setting up SchildiChat Web](configuring-playbook-client-schildichat-web.md), if you've enabled [SchildiChat Web](https://schildi.chat/), a web client based on [Element Web](https://element.io/) with some extras and tweaks
+
+- [Setting up FluffyChat Web](configuring-playbook-client-fluffychat-web.md), if you've enabled [FluffyChat Web](https://github.com/krille-chan/fluffychat), a cute cross-platform messenger (web, iOS, Android) for Matrix written in [Flutter](https://flutter.dev/)
+
 
 ### Authentication and user-related
 
@@ -109,7 +114,9 @@ Use alternative file storage to the default `media_store` folder.
 
 Bridges can be used to connect your Matrix installation with third-party communication networks.
 
-- [Setting up a Generic Mautrix Bridge](configuring-playbook-bridge-mautrix-bridges.md) - a common guide for configuring mautrix bridges
+- [Setting up a Generic Mautrix Bridge](configuring-playbook-bridge-mautrix-bridges.md) — a common guide for configuring mautrix bridges
+
+- [Setting up Mautrix Bluesky bridging](configuring-playbook-bridge-mautrix-bluesky.md)
 
 - [Setting up Mautrix Discord bridging](configuring-playbook-bridge-mautrix-discord.md)
 
@@ -143,7 +150,7 @@ Bridges can be used to connect your Matrix installation with third-party communi
 
 - [Setting up Beeper LinkedIn bridging](configuring-playbook-bridge-beeper-linkedin.md)
 
-- [Setting up matrix-hookshot](configuring-playbook-bridge-hookshot.md) - a bridge between Matrix and multiple project management services, such as [GitHub](https://github.com), [GitLab](https://about.gitlab.com) and [JIRA](https://www.atlassian.com/software/jira).
+- [Setting up matrix-hookshot](configuring-playbook-bridge-hookshot.md) — a bridge between Matrix and multiple project management services, such as [GitHub](https://github.com), [GitLab](https://about.gitlab.com) and [JIRA](https://www.atlassian.com/software/jira).
 
 - [Setting up MX Puppet Slack bridging](configuring-playbook-bridge-mx-puppet-slack.md)
 
@@ -159,8 +166,6 @@ Bridges can be used to connect your Matrix installation with third-party communi
 
 - [Setting up Go Skype Bridge bridging](configuring-playbook-bridge-go-skype-bridge.md)
 
-- [Setting up Email2Matrix](configuring-playbook-email2matrix.md)
-
 - [Setting up Postmoogle email bridging](configuring-playbook-bridge-postmoogle.md)
 
 - [Setting up Matrix SMS bridging](configuring-playbook-bridge-matrix-bridge-sms.md)
@@ -173,23 +178,23 @@ Bridges can be used to connect your Matrix installation with third-party communi
 
 Bots provide various additional functionality to your installation.
 
-- [Setting up baibot](configuring-playbook-bot-baibot.md) - a bot through which you can talk to various [AI](https://en.wikipedia.org/wiki/Artificial_intelligence) / [Large Language Models](https://en.wikipedia.org/wiki/Large_language_model) services ([OpenAI](https://openai.com/)'s [ChatGPT](https://openai.com/blog/chatgpt/) and [others](https://github.com/etkecc/baibot/blob/main/docs/providers.md))
+- [Setting up baibot](configuring-playbook-bot-baibot.md) — a bot through which you can talk to various [AI](https://en.wikipedia.org/wiki/Artificial_intelligence) / [Large Language Models](https://en.wikipedia.org/wiki/Large_language_model) services ([OpenAI](https://openai.com/)'s [ChatGPT](https://openai.com/blog/chatgpt/) and [others](https://github.com/etkecc/baibot/blob/main/docs/providers.md))
 
-- [Setting up matrix-reminder-bot](configuring-playbook-bot-matrix-reminder-bot.md) - a bot to remind you about stuff
+- [Setting up matrix-reminder-bot](configuring-playbook-bot-matrix-reminder-bot.md) — a bot to remind you about stuff
 
-- [Setting up matrix-registration-bot](configuring-playbook-bot-matrix-registration-bot.md) - a bot to create and manage registration tokens to invite users
+- [Setting up matrix-registration-bot](configuring-playbook-bot-matrix-registration-bot.md) — a bot to create and manage registration tokens to invite users
 
-- [Setting up maubot](configuring-playbook-bot-maubot.md) - a plugin-based Matrix bot system
+- [Setting up maubot](configuring-playbook-bot-maubot.md) — a plugin-based Matrix bot system
 
-- [Setting up Honoroit](configuring-playbook-bot-honoroit.md) - a helpdesk bot
+- [Setting up Honoroit](configuring-playbook-bot-honoroit.md) — a helpdesk bot
 
-- [Setting up Mjolnir](configuring-playbook-bot-mjolnir.md) - a moderation tool/bot
+- [Setting up Mjolnir](configuring-playbook-bot-mjolnir.md) — a moderation tool/bot
 
-- [Setting up Draupnir](configuring-playbook-bot-draupnir.md) - a moderation tool/bot, forked from Mjolnir and maintained by its former leader developer
+- [Setting up Draupnir](configuring-playbook-bot-draupnir.md) — a moderation tool/bot, forked from Mjolnir and maintained by its former leader developer
 
-- [Setting up Draupnir for all/D4A](configuring-playbook-appservice-draupnir-for-all.md) - like the [Draupnir bot](configuring-playbook-bot-draupnir.md) mentioned above, but running in appservice mode and supporting multiple instances
+- [Setting up Draupnir for all/D4A](configuring-playbook-appservice-draupnir-for-all.md) — like the [Draupnir bot](configuring-playbook-bot-draupnir.md) mentioned above, but running in appservice mode and supporting multiple instances
 
-- [Setting up Buscarron](configuring-playbook-bot-buscarron.md) - a bot you can use to send any form (HTTP POST, HTML) to a (encrypted) Matrix room
+- [Setting up Buscarron](configuring-playbook-bot-buscarron.md) — a bot you can use to send any form (HTTP POST, HTML) to a (encrypted) Matrix room
 
 ### Administration
 
@@ -199,16 +204,14 @@ Services that help you in administrating and monitoring your Matrix installation
 
 - [Enabling metrics and graphs (Prometheus, Grafana) for your Matrix server](configuring-playbook-prometheus-grafana.md)
 
-- [Enabling metrics and graphs for NginX logs](configuring-playbook-prometheus-nginxlog.md)
-
 - [Setting up the rageshake bug report server](configuring-playbook-rageshake.md)
 
 - [Enabling synapse-usage-exporter for Synapse usage statistics](configuring-playbook-synapse-usage-exporter.md)
 
 - Backups:
-  - [Setting up BorgBackup](configuring-playbook-backup-borg.md) - a full Matrix server backup solution, including the Postgres database
+  - [Setting up BorgBackup](configuring-playbook-backup-borg.md) — a full Matrix server backup solution, including the Postgres database
 
-  - [Setting up postgres backup](configuring-playbook-postgres-backup.md) - a Postgres-database backup solution (note: does not include other files)
+  - [Setting up Postgres backup](configuring-playbook-postgres-backup.md) — a Postgres-database backup solution (note: does not include other files)
 
 ### Other specialized services
 
@@ -224,7 +227,7 @@ Various services that don't fit any other categories.
 
 - [Setting up the Jitsi video-conferencing platform](configuring-playbook-jitsi.md)
 
-- [Setting up Cactus Comments](configuring-playbook-cactus-comments.md) - a federated comment system built on Matrix
+- [Setting up Cactus Comments](configuring-playbook-cactus-comments.md) — a federated comment system built on Matrix
 
 - [Setting up Pantalaimon (E2EE aware proxy daemon)](configuring-playbook-pantalaimon.md) (advanced)
 
@@ -242,13 +245,13 @@ Various services that don't fit any other categories.
 
 - [Setting up the Dimension integration manager](configuring-playbook-dimension.md) ([unmaintained](https://github.com/spantaleev/matrix-docker-ansible-deploy/issues/2806#issuecomment-1673559299); after [installing](installing.md))
 
+- [Setting up Email2Matrix](configuring-playbook-email2matrix.md) (unmaintained; the author suggests taking a look at [Postmoogle](https://github.com/etkecc/postmoogle) as a replacement, which can also be installed using [this playbook](configuring-playbook-bridge-postmoogle.md))
+
 - [Setting up Go-NEB](configuring-playbook-bot-go-neb.md) (unmaintained; the bridge's author suggests taking a look at [matrix-hookshot](https://github.com/matrix-org/matrix-hookshot) as a replacement, which can also be installed using [this playbook](configuring-playbook-bridge-hookshot.md))
 
 - [Setting up matrix-bot-chatgpt](configuring-playbook-bot-chatgpt.md) (unmaintained; the bridge's author suggests taking a look at [baibot](https://github.com/etkecc/baibot) as a replacement, which can also be installed using [this playbook](configuring-playbook-bot-baibot.md))
 
 - [Setting up Mautrix Facebook bridging](configuring-playbook-bridge-mautrix-facebook.md) (deprecated in favor of the Messenger/Instagram bridge with [mautrix-meta-messenger](configuring-playbook-bridge-mautrix-meta-messenger.md))
-
-- [Setting up Mautrix Hangouts bridging](configuring-playbook-bridge-mautrix-hangouts.md) (deprecated in favor of the Google Chat bridge with [mautrix-googlechat](configuring-playbook-bridge-mautrix-googlechat.md))
 
 - [Setting up Mautrix Instagram bridging](configuring-playbook-bridge-mautrix-instagram.md) (deprecated in favor of the Messenger/Instagram bridge with [mautrix-meta-instagram](configuring-playbook-bridge-mautrix-meta-instagram.md))
 

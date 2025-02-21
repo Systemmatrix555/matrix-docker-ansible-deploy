@@ -182,6 +182,34 @@
           We found usage of the following variables: {{ matrix_playbook_migration_redis_migration_vars.keys() | join(', ') }}
       when: "matrix_playbook_migration_redis_migration_vars | length > 0"
 
+- when: matrix_playbook_migration_redis_valkey_migration_validation_enabled | bool
+  block:
+    - ansible.builtin.set_fact:
+        matrix_playbook_migration_redis_migration_vars: |-
+          {{ vars | dict2items | selectattr('key', 'match', 'redis_.*') | list | items2dict }}
+
+    - name: (Deprecation) Catch and report matrix_redis variables
+      ansible.builtin.fail:
+        msg: >-
+          The Redis role that used to be part of this playbook has been superseded by https://github.com/mother-of-all-self-hosting/ansible-role-valkey.
+          Please change your configuration (vars.yml) to rename all variables (`redis_` -> `valkey_`).
+          We found usage of the following variables: {{ matrix_playbook_migration_redis_migration_vars.keys() | join(', ') }}
+      when: "matrix_playbook_migration_redis_migration_vars | length > 0"
+
+- when: matrix_playbook_migration_keydb_valkey_migration_validation_enabled | bool
+  block:
+    - ansible.builtin.set_fact:
+        matrix_playbook_migration_keydb_migration_vars: |-
+          {{ vars | dict2items | selectattr('key', 'match', 'keydb_.*') | list | items2dict }}
+
+    - name: (Deprecation) Catch and report matrix_redis variables
+      ansible.builtin.fail:
+        msg: >-
+          The KeyDB role that used to be part of this playbook has been superseded by https://github.com/mother-of-all-self-hosting/ansible-role-valkey.
+          Please change your configuration (vars.yml) to rename all variables (`keydb_` -> `valkey_`).
+          We found usage of the following variables: {{ matrix_playbook_migration_keydb_migration_vars.keys() | join(', ') }}
+      when: "matrix_playbook_migration_keydb_migration_vars | length > 0"
+
 - when: matrix_playbook_migration_matrix_etherpad_migration_validation_enabled | bool
   block:
     - ansible.builtin.set_fact:
@@ -395,7 +423,7 @@
 - name: (Deprecation) Catch and report devture_postgres variables
   ansible.builtin.fail:
     msg: |-
-      The postgres role in the playbook now lives under the MASH organization (https://github.com/mother-of-all-self-hosting/ansible-role-postgres).
+      The Postgres role in the playbook now lives under the MASH organization (https://github.com/mother-of-all-self-hosting/ansible-role-postgres).
       The new role is pretty much the same, but uses differently named variables.
 
       Please change your configuration (vars.yml) to rename all `devture_postgres_`-prefixed variables (`devture_postgres_*` -> `postgres_*`).
@@ -424,3 +452,16 @@
 
       The following variables in your configuration need to be renamed: {{ vars | dict2items | selectattr('key', 'match', 'devture_traefik_.*') | map (attribute='key') | join(', ') }}
   when: "vars | dict2items | selectattr('key', 'match', 'devture_traefik_.*') | list | items2dict"
+
+- name: (Deprecation) Catch and report mautrix-hangouts variables
+  ansible.builtin.fail:
+    msg: |-
+      The Google Hangouts service was discontinued on 1st of November 2022.
+      The mautrix-hangouts bridge has been deprecated in the playbook since December 2024 and was completely removed from the playbook in February 2025.
+
+      Please change your configuration (`vars.yml`) to remove all `matrix_mautrix_hangouts_*` variables.
+
+      You may also wish to uninstall the bridge manually. See `docs/configuring-playbook-bridge-mautrix-hangouts.md` for more information.
+
+      The following variables in your configuration need to be removed: {{ vars | dict2items | selectattr('key', 'match', 'matrix_mautrix_hangouts_.*') | map (attribute='key') | join(', ') }}
+  when: "vars | dict2items | selectattr('key', 'match', 'matrix_mautrix_hangouts_.*') | list | items2dict"

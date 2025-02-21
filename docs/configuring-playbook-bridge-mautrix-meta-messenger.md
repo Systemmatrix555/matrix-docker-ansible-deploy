@@ -45,8 +45,8 @@ As mentioned above, the [mautrix-meta](https://github.com/mautrix/meta) bridge s
 The bridge can pull your Messenger messages via 3 different methods:
 
 - (`facebook`) Facebook via `facebook.com`
-- (`facebook-tor`) Facebook via `facebookwkhpilnemxj7asaniu7vnjjbiltxjqhye3mhbshg7kx5tfyd.onion` ([Tor](https://www.torproject.org/)) - does not currently proxy media downloads
-- (default) (`messenger`) Messenger via `messenger.com` - usable even without a Facebook account
+- (`facebook-tor`) Facebook via `facebookwkhpilnemxj7asaniu7vnjjbiltxjqhye3mhbshg7kx5tfyd.onion` ([Tor](https://www.torproject.org/)) — does not currently proxy media downloads
+- (default) (`messenger`) Messenger via `messenger.com` — usable even without a Facebook account
 
 You may switch the mode via the `matrix_mautrix_meta_messenger_meta_mode` variable. The playbook defaults to the `messenger` mode, because it's most universal (every Facebook user has a Messenger account, but the opposite is not true).
 
@@ -84,3 +84,16 @@ You can then follow instructions on the bridge's [official documentation on Auth
 After logging in, the bridge will sync recent chats.
 
 **Note**: given that the bot is configured in `messenger` [bridge mode](#bridge-mode) by default, you will need to log in to [messenger.com](https://messenger.com/) (not `facebook.com`!) and obtain the cookies from there.
+
+## Troubleshooting
+
+As with all other services, you can find the logs in [systemd-journald](https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html) by logging in to the server with SSH and running `journalctl -fu matrix-mautrix-meta-messenger`.
+
+### Increase logging verbosity
+
+The default logging level for this component is `warn`. If you want to increase the verbosity, add the following configuration to your `vars.yml` file and re-run the playbook:
+
+```yaml
+# This bridge uses zerolog, so valid levels are: panic, fatal, error, warn, info, debug, trace
+matrix_mautrix_meta_messenger_logging_min_level: debug
+```
